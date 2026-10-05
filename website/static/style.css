@@ -1,0 +1,527 @@
+/* ================================
+   GLOBAL
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f8f9;
+    color: #102a43;
+    line-height: 1.6;
+}
+
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+    height: 72px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #102a43;
+}
+
+.logo span span {
+    color: #0f766e;
+}
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+    background: #0f766e;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.nav-text {
+    color: #486581;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+    min-height: 500px;
+    padding: 80px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+
+    background:
+        radial-gradient(
+            circle at 85% 30%,
+            rgba(20, 184, 166, 0.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f1f8f7
+        );
+}
+
+.hero-content {
+    max-width: 680px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #e6fffb;
+    color: #0f766e;
+    border: 1px solid #b2f5ea;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 22px;
+}
+
+.badge span {
+    font-size: 15px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    line-height: 1.12;
+    margin-bottom: 22px;
+    color: #102a43;
+}
+
+.hero h1 span {
+    display: block;
+    color: #0f766e;
+}
+
+.hero p {
+    max-width: 610px;
+    color: #627d98;
+    font-size: 17px;
+    margin-bottom: 35px;
+}
+
+
+/* ================================
+   HERO STATS
+================================ */
+
+.hero-stats {
+    display: flex;
+    gap: 45px;
+}
+
+.hero-stats div {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-stats strong {
+    font-size: 25px;
+    color: #102a43;
+}
+
+.hero-stats small {
+    color: #829ab1;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+
+/* ================================
+   HEART VISUAL
+================================ */
+
+.heart-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 320px;
+}
+
+.heart-circle {
+    width: 270px;
+    height: 270px;
+    border-radius: 50%;
+    background: #e6fffb;
+    border: 1px solid #b2f5ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(15, 118, 110, 0.12);
+}
+
+.heart {
+    color: #0f766e;
+    font-size: 105px;
+    animation: heartbeat 1.5s infinite;
+}
+
+.pulse-line {
+    position: absolute;
+    width: 170px;
+    height: 2px;
+    background: #5eead4;
+    bottom: 62px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.12);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.08);
+    }
+}
+
+
+/* ================================
+   MAIN CONTAINER
+================================ */
+
+.main-container {
+    max-width: 1100px;
+    margin: 70px auto;
+    padding: 0 25px;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-label {
+    color: #0f766e;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.section-heading h2 {
+    font-size: 32px;
+    margin: 7px 0;
+    color: #102a43;
+}
+
+.section-heading p {
+    color: #627d98;
+    font-size: 15px;
+}
+
+
+/* ================================
+   PREDICTION CARD
+================================ */
+
+.prediction-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 38px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 15px 40px rgba(16, 42, 67, 0.07);
+}
+
+.form-section {
+    margin-bottom: 35px;
+}
+
+.form-section h3 {
+    font-size: 19px;
+    color: #102a43;
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e6edf2;
+}
+
+
+/* ================================
+   FORM GRID
+================================ */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #486581;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #102a43;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #0f766e;
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.10);
+}
+
+.form-group input::placeholder {
+    color: #9fb3c8;
+}
+
+
+/* ================================
+   BUTTON
+================================ */
+
+.predict-button {
+    width: 100%;
+    border: none;
+    background: #0f766e;
+    color: white;
+    padding: 16px 22px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    transition: 0.25s;
+}
+
+.predict-button:hover {
+    background: #115e59;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(15, 118, 110, 0.20);
+}
+
+.predict-button .arrow {
+    font-size: 20px;
+}
+
+
+/* ================================
+   RESULT
+================================ */
+
+.result {
+    margin-top: 25px;
+    padding: 22px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.result.hidden {
+    display: none;
+}
+
+.result.success {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #047857;
+}
+
+.result.danger {
+    background: #fff1f2;
+    border: 1px solid #fecdd3;
+    color: #be123c;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+    background: #102a43;
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 80px;
+}
+
+.footer-logo {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+footer p {
+    color: #bcccdc;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+footer small {
+    color: #829ab1;
+    font-size: 12px;
+}
+
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 850px) {
+
+    .hero {
+        padding: 60px 6%;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 700px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .heart-visual {
+        min-width: auto;
+    }
+
+    .heart-circle {
+        width: 220px;
+        height: 220px;
+    }
+
+    .heart {
+        font-size: 85px;
+    }
+
+    .nav-text {
+        display: none;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .hero {
+        padding: 50px 20px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .hero-stats {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .hero-stats strong {
+        font-size: 21px;
+    }
+
+    .main-container {
+        margin: 45px auto;
+        padding: 0 15px;
+    }
+
+    .section-heading h2 {
+        font-size: 27px;
+    }
+
+    .prediction-card {
+        padding: 22px;
+        border-radius: 14px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .heart-circle {
+        width: 190px;
+        height: 190px;
+    }
+
+    .heart {
+        font-size: 70px;
+    }
+
+    .pulse-line {
+        width: 120px;
+    }
+}
