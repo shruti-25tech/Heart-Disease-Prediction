@@ -1,0 +1,532 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardioAI | Heart Risk Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+
+        <a href="/" class="logo">
+            <span class="logo-icon">♥</span>
+            CardioAI
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/prediction" class="active">Prediction</a>
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- Page Header -->
+<header class="prediction-header">
+
+    <div class="section-label">
+        ✦ AI HEART RISK ASSESSMENT
+    </div>
+
+    <h1>
+        Analyze Your <span>Heart Health</span>
+    </h1>
+
+    <p>
+        Enter the required health and clinical information to generate
+        an AI-based heart disease risk prediction.
+    </p>
+
+</header>
+
+
+<!-- Prediction Form -->
+<main class="prediction-container">
+
+    <form id="predictionForm" novalidate>
+
+        <!-- 01 Patient Information -->
+        <section class="form-card">
+
+            <div class="form-card-header">
+
+                <div class="form-icon">01</div>
+
+                <div>
+                    <h2>Patient Information</h2>
+                    <p>Basic demographic information</p>
+                </div>
+
+            </div>
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label for="age">Age</label>
+                    <input
+                        type="number"
+                        id="age"
+                        placeholder="Enter age"
+                        min="1"
+                        max="120"
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label for="sex">Gender</label>
+
+                    <select id="sex">
+                        <option value="">Select gender</option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 02 Clinical Measurements -->
+        <section class="form-card">
+
+            <div class="form-card-header">
+
+                <div class="form-icon">02</div>
+
+                <div>
+                    <h2>Clinical Measurements</h2>
+                    <p>Important cardiovascular measurements</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label for="trestbps">
+                        Resting Blood Pressure
+                        <span>(mmHg)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        id="trestbps"
+                        placeholder="e.g. 130"
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label for="chol">
+                        Cholesterol
+                        <span>(mg/dl)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        id="chol"
+                        placeholder="e.g. 250"
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label for="thalach">
+                        Maximum Heart Rate
+                    </label>
+
+                    <input
+                        type="number"
+                        id="thalach"
+                        placeholder="e.g. 150"
+                    >
+                </div>
+
+
+                <div class="input-group">
+                    <label for="oldpeak">
+                        ST Depression
+                        <span>(Oldpeak)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        id="oldpeak"
+                        placeholder="e.g. 1.0"
+                        step="0.1"
+                    >
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 03 Heart & Exercise Indicators -->
+        <section class="form-card">
+
+            <div class="form-card-header">
+
+                <div class="form-icon">03</div>
+
+                <div>
+                    <h2>Heart &amp; Exercise Indicators</h2>
+                    <p>Additional cardiovascular information</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label for="cp">Chest Pain Type</label>
+
+                    <select id="cp">
+                        <option value="">Select type</option>
+                        <option value="0">Type 0</option>
+                        <option value="1">Type 1</option>
+                        <option value="2">Type 2</option>
+                        <option value="3">Type 3</option>
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+                    <label for="fbs">Fasting Blood Sugar</label>
+
+                    <select id="fbs">
+                        <option value="">Select</option>
+                        <option value="0">Normal</option>
+                        <option value="1">High</option>
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+                    <label for="restecg">Resting ECG</label>
+
+                    <select id="restecg">
+                        <option value="">Select type</option>
+                        <option value="0">Type 0</option>
+                        <option value="1">Type 1</option>
+                        <option value="2">Type 2</option>
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+                    <label for="exang">Exercise-Induced Angina</label>
+
+                    <select id="exang">
+                        <option value="">Select</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 04 Additional Clinical Information -->
+        <section class="form-card">
+
+            <div class="form-card-header">
+
+                <div class="form-icon">04</div>
+
+                <div>
+                    <h2>Additional Clinical Information</h2>
+                    <p>Other model input parameters</p>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label for="slope">ST Segment Slope</label>
+
+                    <select id="slope">
+                        <option value="">Select type</option>
+                        <option value="0">Type 0</option>
+                        <option value="1">Type 1</option>
+                        <option value="2">Type 2</option>
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+                    <label for="ca">Number of Major Vessels</label>
+
+                    <select id="ca">
+                        <option value="">Select</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+                    <label for="thal">Thalassemia</label>
+
+                    <select id="thal">
+                        <option value="">Select type</option>
+                        <option value="0">Type 0</option>
+                        <option value="1">Type 1</option>
+                        <option value="2">Type 2</option>
+                        <option value="3">Type 3</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Generate Prediction Button -->
+        <div class="prediction-action">
+
+            <button
+                type="button"
+                class="predict-button"
+                onclick="generatePrediction()"
+            >
+                <span>Generate Risk Assessment</span>
+                <span class="button-arrow">→</span>
+            </button>
+
+            <p class="form-note">
+                Your information is processed only for this prediction.
+            </p>
+
+        </div>
+
+    </form>
+
+
+    <!-- Prediction Result -->
+    <section id="resultCard" class="result-card hidden">
+
+        <div id="resultIcon" class="result-icon">
+            ♥
+        </div>
+
+        <div class="result-content">
+
+            <div class="result-label">
+                AI ASSESSMENT COMPLETE
+            </div>
+
+            <h2 id="resultTitle">
+                Prediction Result
+            </h2>
+
+            <div class="risk-score">
+                <span id="probability">0</span>%
+            </div>
+
+            <p id="resultMessage">
+                Your prediction result will appear here.
+            </p>
+
+            <button
+                type="button"
+                class="reset-button"
+                onclick="resetPrediction()"
+            >
+                Analyze Again
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- Disclaimer -->
+<div class="disclaimer">
+
+    <strong>Important:</strong>
+    This application is developed for educational and research purposes.
+    The prediction generated by this machine learning model should not be
+    considered a medical diagnosis or a substitute for professional medical advice.
+
+</div>
+
+
+<!-- Footer -->
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div>
+            <strong>♥ CardioAI</strong>
+
+            <p>
+                Intelligent machine learning for heart health risk assessment.
+            </p>
+        </div>
+
+        <div>
+            <p>
+                Educational &amp; Research Project
+            </p>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+async function generatePrediction() {
+
+    const patientData = {
+        age: Number(document.getElementById("age").value),
+        sex: Number(document.getElementById("sex").value),
+        cp: Number(document.getElementById("cp").value),
+        trestbps: Number(document.getElementById("trestbps").value),
+        chol: Number(document.getElementById("chol").value),
+        fbs: Number(document.getElementById("fbs").value),
+        restecg: Number(document.getElementById("restecg").value),
+        thalach: Number(document.getElementById("thalach").value),
+        exang: Number(document.getElementById("exang").value),
+        oldpeak: Number(document.getElementById("oldpeak").value),
+        slope: Number(document.getElementById("slope").value),
+        ca: Number(document.getElementById("ca").value),
+        thal: Number(document.getElementById("thal").value)
+    };
+
+    if (
+        !document.getElementById("age").value ||
+        document.getElementById("sex").value === "" ||
+        document.getElementById("cp").value === "" ||
+        !document.getElementById("trestbps").value ||
+        !document.getElementById("chol").value ||
+        document.getElementById("fbs").value === "" ||
+        document.getElementById("restecg").value === "" ||
+        !document.getElementById("thalach").value ||
+        document.getElementById("exang").value === "" ||
+        !document.getElementById("oldpeak").value ||
+        document.getElementById("slope").value === "" ||
+        document.getElementById("ca").value === "" ||
+        document.getElementById("thal").value === ""
+    ) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    const button = document.querySelector(".predict-button");
+
+    button.disabled = true;
+    button.innerHTML = "Analyzing...";
+
+    try {
+
+        const response = await fetch("/predict", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(patientData)
+        });
+
+        if (!response.ok) {
+            throw new Error("Prediction API error");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("resultTitle").textContent =
+            data.result;
+
+        document.getElementById("probability").textContent =
+            data.probability;
+
+        if (data.prediction === 1) {
+
+            document.getElementById("resultIcon").textContent = "♥";
+
+            document.getElementById("resultMessage").textContent =
+                "The machine learning model predicts an elevated heart disease risk based on the information provided.";
+
+        } else {
+
+            document.getElementById("resultIcon").textContent = "✓";
+
+            document.getElementById("resultMessage").textContent =
+                "The machine learning model predicts a lower heart disease risk based on the information provided.";
+        }
+
+        document
+            .getElementById("resultCard")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("resultCard")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+    } catch (error) {
+
+        alert("Unable to connect to the prediction API.");
+
+    } finally {
+
+        button.disabled = false;
+
+        button.innerHTML = `
+            <span>Generate Risk Assessment</span>
+            <span class="button-arrow">→</span>
+        `;
+    }
+}
+
+
+function resetPrediction() {
+
+    document
+        .getElementById("predictionForm")
+        .reset();
+
+    document
+        .getElementById("resultCard")
+        .classList.add("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+</script>
+
+</body>
+</html>
+```

@@ -1,10 +1,8 @@
-const form = document.getElementById("predictionForm");
-const resultDiv = document.getElementById("result");
+async function generatePrediction() {
 
-form.addEventListener("submit", async function (event) {
-    event.preventDefault();
+    const button = document.querySelector(".predict-button");
 
-    const data = {
+    const patientData = {
         age: Number(document.getElementById("age").value),
         sex: Number(document.getElementById("sex").value),
         cp: Number(document.getElementById("cp").value),
@@ -20,46 +18,114 @@ form.addEventListener("submit", async function (event) {
         thal: Number(document.getElementById("thal").value)
     };
 
-    resultDiv.classList.remove("hidden", "success", "danger");
-    resultDiv.textContent = "Analyzing patient data...";
+
+    for (const key in patientData) {
+
+        if (
+            patientData[key] === "" ||
+            Number.isNaN(patientData[key])
+        ) {
+            alert("Please fill in all fields.");
+            return;
+        }
+    }
+
+
+    button.disabled = true;
+    button.innerHTML = "Analyzing...";
+
 
     try {
+
         const response = await fetch("/predict", {
+
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+
+            body: JSON.stringify(patientData)
+
         });
 
+
+        const data = await response.json();
+
+
         if (!response.ok) {
-            throw new Error("Prediction request failed");
+            throw new Error("Prediction failed");
         }
 
-        const result = await response.json();
 
-        resultDiv.classList.remove("hidden");
+        document.getElementById("resultTitle").textContent =
+            data.result;
 
-        if (result.prediction === 1) {
-            resultDiv.classList.add("danger");
+        document.getElementById("probability").textContent =
+            data.probability;
 
-            resultDiv.innerHTML = `
-                <div>${result.result}</div>
-                <div>Model Probability: ${result.probability}%</div>
-            `;
+
+        if (data.prediction === 1) {
+
+            document.getElementById("resultIcon").textContent = "♥";
+
+            document.getElementById("resultMessage").textContent =
+                "The machine learning model predicts an elevated heart disease risk based on the information provided.";
+
         } else {
-            resultDiv.classList.add("success");
 
-            resultDiv.innerHTML = `
-                <div>${result.result}</div>
-                <div>Model Probability: ${result.probability}%</div>
-            `;
+            document.getElementById("resultIcon").textContent = "✓";
+
+            document.getElementById("resultMessage").textContent =
+                "The machine learning model predicts a lower heart disease risk based on the information provided.";
         }
+
+
+        document
+            .getElementById("resultCard")
+            .classList.remove("hidden");
+
+
+        document
+            .getElementById("resultCard")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
 
     } catch (error) {
-        resultDiv.classList.remove("hidden");
-        resultDiv.classList.add("danger");
-        resultDiv.textContent =
-            "Unable to connect to the prediction API. Please make sure the API is running.";
+
+        alert(
+            "Unable to connect to the prediction API."
+        );
+
+        console.error(error);
+
     }
-});
+
+
+    button.disabled = false;
+
+    button.innerHTML = `
+        <span>Generate Risk Assessment</span>
+        <span class="button-arrow">→</span>
+    `;
+}
+
+
+function resetPrediction() {
+
+    document
+        .getElementById("predictionForm")
+        .reset();
+
+    document
+        .getElementById("resultCard")
+        .classList.add("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}

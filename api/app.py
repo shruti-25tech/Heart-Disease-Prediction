@@ -6,11 +6,10 @@ from pydantic import BaseModel
 import pandas as pd
 import pickle
 
+app = FastAPI(title="CardioAI - Heart Disease Prediction")
 
-app = FastAPI(title="Heart Disease Prediction API")
 app.mount("/static", StaticFiles(directory="website/static"), name="static")
 
-# Allow website to communicate with API
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -20,10 +19,11 @@ app.add_middleware(
 )
 
 
-# Load trained model and scaler
+# Load trained model
 with open("model/heart_model.pkl", "rb") as file:
     model = pickle.load(file)
 
+# Load scaler
 with open("model/scaler.pkl", "rb") as file:
     scaler = pickle.load(file)
 
@@ -47,6 +47,11 @@ class PatientData(BaseModel):
 @app.get("/")
 def home():
     return FileResponse("website/templates/index.html")
+
+
+@app.get("/prediction")
+def prediction_page():
+    return FileResponse("website/templates/prediction.html")
 
 
 @app.post("/predict")
